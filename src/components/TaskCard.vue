@@ -38,13 +38,14 @@ const comment = ref(null);
 // Defining arrow for different board
 const canMoveForward = computed(() => {
   return (
-    task.board === TASK.STATUS.PENDING || task.board === TASK.STATUS.PROCESSING
+    task.status === TASK.STATUS.PENDING ||
+    task.status === TASK.STATUS.PROCESSING
   );
 });
 
 // Defining arrow for different board
 const canMoveBackward = computed(() => {
-  return task.board !== TASK.STATUS.PENDING;
+  return task.status !== TASK.STATUS.PENDING;
 });
 
 // Moving the board based on the boardname
@@ -83,7 +84,7 @@ const addComment = () => {
 
 <template>
   <v-card class="task-card" draggable="true" @dragstart="onDragStart">
-    <div class="task-container" :class="getBoardClass(task.board)">
+    <div class="task-container" :class="getBoardClass(task.status)">
       <div class="task-title">{{ task.title }}</div>
       <div class="task-buttons">
         <!-- Comment button -->
@@ -97,7 +98,6 @@ const addComment = () => {
           @click="moveTask('backward')"
           icon
           size="x-small"
-          :disabled="!canMoveBackward"
         >
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
@@ -107,7 +107,6 @@ const addComment = () => {
           @click="moveTask('forward')"
           icon
           size="x-small"
-          :disabled="!canMoveForward"
         >
           <v-icon>mdi-arrow-right</v-icon>
         </v-btn>
@@ -168,7 +167,6 @@ const addComment = () => {
     <div class="card-text-section">
       <v-list-item v-if="task.labels && task.labels.length" class="mr-4">
         <span>
-          <!-- <v-list-item-title>Labels:</v-list-item-title> -->
           <v-list-item-subtitle>
             <v-chip class="mr-" v-for="label in task.labels" :key="label">{{
               label
@@ -182,14 +180,14 @@ const addComment = () => {
       <v-divider></v-divider>
       <div class="card-text-section">
         <v-card-subtitle>Comments:</v-card-subtitle>
-        <v-card-text v-for="c in task.comments" :key="c.createdAt"
-          ><div class="d-flex justify-space-between">
+        <v-card-text v-for="c in task.comments" :key="c.createdAt">
+          <div class="d-flex justify-space-between">
             <span>User 1: {{ c.content }}</span>
             <span class="text-grey font-italic text-caption">{{
               dayjs(c.createdAt).fromNow()
             }}</span>
-          </div></v-card-text
-        >
+          </div>
+        </v-card-text>
       </div>
     </div>
     <div>
@@ -246,7 +244,6 @@ const addComment = () => {
 .task-buttons {
   display: flex;
   gap: 8px;
-  /* Adjust as needed */
 }
 
 .processing-board {
@@ -264,6 +261,7 @@ const addComment = () => {
 .v-list-item-subtitle {
   .v-chip {
     margin-right: 4px;
+    margin-bottom: 4px;
   }
 }
 </style>

@@ -18,7 +18,7 @@ export default defineStore('task', {
   },
   actions: {
     getTaskCountByStatus(status) {
-      return this.tasks.filter((task) => task.board === status).length;
+      return this.tasks.filter((task) => task.status === status).length;
     },
     addTask(newTask) {
       newTask.id = this.taskIdCounter++; // Assign a unique ID to the new task
@@ -69,22 +69,22 @@ export default defineStore('task', {
     moveTaskForward(taskId) {
       const task = this.tasks.find((task) => task.id === taskId);
       if (task) {
-        if (task.board === TASK.STATUS.PENDING) {
-          task.board = TASK.STATUS.PROCESSING;
-        } else if (task.board === TASK.STATUS.PROCESSING) {
-          task.board = TASK.STATUS.DONE;
+        if (task.status === TASK.STATUS.PENDING) {
+          task.status = TASK.STATUS.PROCESSING;
+        } else if (task.status === TASK.STATUS.PROCESSING) {
+          task.status = TASK.STATUS.DONE;
         }
       }
     },
 
     // Move a task backward (e.g., from Processing to Pending)
     moveTaskBackward(taskId) {
-      const task = this.tasks.find((task) => task.id === taskId);
-      if (task && task.board !== TASK.STATUS.PENDING) {
-        if (task.board === TASK.STATUS.PROCESSING) {
-          task.board = TASK.STATUS.PENDING;
-        } else if (task.board === TASK.STATUS.DONE) {
-          task.board = TASK.STATUS.PROCESSING;
+      const task = this.tasks.find((t) => t.id === taskId);
+      if (task && task.status !== TASK.STATUS.PENDING) {
+        if (task.status === TASK.STATUS.PROCESSING) {
+          task.status = TASK.STATUS.PENDING;
+        } else if (task.status === TASK.STATUS.DONE) {
+          task.status = TASK.STATUS.PROCESSING;
         }
       }
     },

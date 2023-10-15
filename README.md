@@ -1,8 +1,8 @@
-# task-management-app
+# Task Management App
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap the project. Here are a few examples.
+A simple and efficient task management application to help you stay organized and productive.
 
 ### Programming Language
 * [![JavaScript][JavaScript]][JavaScript-url]
@@ -10,7 +10,7 @@ This section should list any major frameworks/libraries used to bootstrap the pr
 ### Frameworks/Libraries
 * [![Vue][Vue.js]][Vue-url]
 * [![Vuetify][Vuetify.com]][Vuetify-url]
-* [![Pinia][Pinia]][Vuetify-url]
+* [![Pinia][Pinia]][Pinia-url]
 
 
 
@@ -19,9 +19,8 @@ This section should list any major frameworks/libraries used to bootstrap the pr
 
 This is a task management application than can allow user to arrange their task. 
 
-## Prerequisites
 
-## Project Setup
+### Project Setup
 
 ```sh
 npm install
@@ -45,21 +44,32 @@ npm run build
 npm run lint
 ```
 
-### Features
+## Features
+
 Features that user can used in the app as follows:
-1. Create New Task 
+1. **Create New Task**
     - User can create new task with title, description, upload file, estimated finished time, label and the  status of the task.
-    - User can view the uploaded attachment of the task in a new tabs by clicking the attachment itself on the task card. (attachments file size must < 1MB)
-    - Title, description, board are required. 
+    - User can view the uploaded attachment of the task in a new tabs by clicking the attachment itself on the task card.
 
-2. Changing board/status on each task card
-    - User can either drag and drop the task on the board or click the arrow on the up right corner to change the tasks' status. 
+2. **Updating board/status on each task card**
+    - User can either **drag and drop** the task on the board or **click the arrow on the up right corner** to change the tasks' status. 
 
-3. User can use the search bar to search the task by task fields (e.g. title, description, label).  
+3. **Search Bar**
+    - User can use the search bar to search the task by task fields (e.g. title, description, label).
 
-4. Progress bar is provided at the top to calculate progress for the tasks that are done automatically. It will updated whenever the task is moved to the done board or any task is newly added.
+4. **Progression Bar**
+    - Progress bar is provided at the top to calculate progress for the tasks that are **done** automatically. It will updated whenever the task is moved to the done board or any task is newly added.
 
-5. Edit & Delete task is available for the user by clicking the edit & delete button.
+
+<img src="public/docs/progression.png" alt="overallDesign_img" width="" height="200">
+
+5. **Commentbox**
+    - is also available for the user to leave their comments on the respective task. Time and Username will be recorded.
+
+<img src="public/docs/comments.png" alt="comments_img" width="150" height="200">
+
+6. **Edit & Delete task**
+    - Edit & Delete task is available for the user by clicking the edit & delete button.
 
 
 

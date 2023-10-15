@@ -8,7 +8,7 @@ const taskStore = useTaskStore();
 
 const progressPercentage = computed(() => {
   const completedTasks = taskStore.tasks.filter(
-    (task) => task.board === TASK.STATUS.DONE,
+    (task) => task.status === TASK.STATUS.DONE,
   ).length;
   return (completedTasks / taskStore.taskCount) * 100;
 });

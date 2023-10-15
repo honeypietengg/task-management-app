@@ -201,7 +201,7 @@ const addComment = (taskId, comment) => {
         <v-col cols="auto">
           <v-btn
             outlined
-            color="indigo"
+            color="primary"
             @click="openCreateDialog"
             prepend-icon="mdi-plus"
             >ADD TASK</v-btn
@@ -222,44 +222,19 @@ const addComment = (taskId, comment) => {
               }})
             </v-card-title>
 
-            <task-card
-              v-for="task in getTasksByStatus(status)"
-              :key="task.id"
-              :task="task"
-              @delete="openDeleteDialog"
-              @edit="openEditDialog"
-              @comment="addComment"
-              @dragover="onDragOver"
-              @drop="onDrop(status, $event)"
-            />
+            <div class="task-card">
+              <task-card
+                v-for="task in getTasksByStatus(status)"
+                :key="task.id"
+                :task="task"
+                @delete="openDeleteDialog"
+                @edit="openEditDialog"
+                @comment="addComment"
+                @dragover="onDragOver"
+                @drop="onDrop(status, $event)"
+              />
 
-            <v-list @dragover="onDragOver" @drop="onDrop(status, $event)">
-              <v-list-item
-                v-if="getTasksByStatus(status).length === 0"
-                class="text-center"
-              >
-                No tasks here
-              </v-list-item>
-            </v-list>
-
-            <!-- <v-card-text
-              class="task-card"
-              @dragover="onDragOver"
-              @drop="onDrop(status, $event)"
-            >
-              <v-list>
-                <v-list-item
-                  :task="task"
-                  v-for="task in getTasksByStatus(status)"
-                  :key="task.id"
-                  class="bordered-list-item"
-                >
-                  <task-card
-                    :task="task"
-                    @delete="openDeleteDialog"
-                    @edit="openEditDialog"
-                  />
-                </v-list-item>
+              <v-list @dragover="onDragOver" @drop="onDrop(status, $event)">
                 <v-list-item
                   v-if="getTasksByStatus(status).length === 0"
                   class="text-center"
@@ -267,7 +242,7 @@ const addComment = (taskId, comment) => {
                   No tasks here
                 </v-list-item>
               </v-list>
-            </v-card-text> -->
+            </div>
           </v-card>
         </v-col>
       </v-row>
@@ -296,7 +271,6 @@ const addComment = (taskId, comment) => {
             label="Select Board"
           ></v-select>
           <v-combobox
-            hint="Maximum of 5 tags"
             v-model="selectedLabels"
             :items="taskStore.availableLabels"
             label="Select Labels"
@@ -346,10 +320,12 @@ const addComment = (taskId, comment) => {
           <v-text-field
             v-model="taskStore.selectedEditedTask.title"
             label="Title"
+            :rules="validateRules"
           ></v-text-field>
           <v-textarea
             v-model="taskStore.selectedEditedTask.description"
             label="Description"
+            :rules="validateRules"
           ></v-textarea>
           <v-text-field
             v-model="taskStore.selectedEditedTask.estimatedTime"
@@ -410,11 +386,7 @@ const addComment = (taskId, comment) => {
             @click="closeEditDialog"
             >Cancel</v-btn
           >
-          <v-btn
-            rounded="lg"
-            color="blue-lighten-1"
-            variant="flat"
-            @click="editTask"
+          <v-btn rounded="lg" color="primary" variant="flat" @click="editTask"
             >Save</v-btn
           >
         </v-card-actions>
@@ -440,5 +412,9 @@ const addComment = (taskId, comment) => {
   border: 1px solid #aaaaaa !important;
   padding: 0 !important;
   margin-bottom: 1rem;
+}
+
+.task-card {
+  margin: 1rem;
 }
 </style>
