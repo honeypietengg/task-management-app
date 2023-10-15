@@ -1,0 +1,68 @@
+@import './base.css';
+
+#app {
+  /* max-width: 1280px; */
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+.v-container {
+  max-width: 100% !important;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+}
+
+.v-container {
+  max-width: 1400px;
+  /* Set your desired max-width here */
+}
+
+
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+.v-dialog>.v-overlay__content>form>.v-card {
+  max-width: 520px;
+  max-height: 640px;
+  margin: auto;
+  width: 100%;
+
+}
+
+.v-dialog>.v-overlay__content>.v-card {
+  max-width: 520px;
+  margin: auto;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  body {
+    /*display: flex;*/
+    place-items: center;
+  }
+
+  #app {
+    display: block;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+}
+
+.v-input--horizontal {
+  padding: 4px 0px;
+}
+
+.v-progress-linear {
+  transition: width 1s linear !important;
+}
